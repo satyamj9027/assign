@@ -1762,3 +1762,128 @@ API Gateway (FastAPI) ──► Load Balancer ──► Docker Containers (K8s)
 | **Output Formats** | Rich Markdown, JSON, Charts, Path Diagrams, Comparison Tables |
 | **Deployment Stack** | FastAPI + LangGraph + Docker + K8s + Vercel (Frontend) |
 
+---
+
+## 16. DETAILED CALCULATION OF COL (COST OF LIVING) & POL (POLLUTION) INDICES
+
+Location-wise decision making aur relocation analysis ko optimize karne ke liye, hamare agents niche diye gaye detailed mathematical formulas, weight distribution tables aur components ka use karte hain.
+
+---
+
+### A. Cost of Living (COL) Index Calculation
+
+COL Index kisi bhi city ki affordability ko standard baseline city (**New York City = 100**) se compare karke measure karta hai.
+
+#### 1. Components & Weight Distribution (The Basket of Goods)
+
+Numbeo aur BLS methodologies ke according, COL calculation mein 5 key categories ko consider kiya jata hai:
+
+| Component | Description | Weight ($W_i$) |
+|-----------|-------------|----------------|
+| **Housing & Rent** | 1-3 bedroom apartments (City center vs outside) | **39.5%** |
+| **Groceries** | Food items (milk, bread, rice, eggs, meat, fruits, veg) | **30.0%** |
+| **Restaurants** | Mid-range and budget dining out costs | **15.0%** |
+| **Utilities** | Electricity, heating/cooling, water, garbage, internet | **8.5%** |
+| **Transportation** | One-way tickets, monthly passes, gasoline price | **7.0%** |
+
+#### 2. Mathematical Formula
+
+Let $P_{i, \text{Target}}$ be the average price of item $i$ in the target city, and $P_{i, \text{NYC}}$ be the average price of the same item in New York City. The Cost of Living Index (Excl. Rent) is calculated as:
+
+$$\text{COLI}_{\text{Excl. Rent}} = \left( \frac{\sum (P_{i, \text{Target}} \times W_i)}{\sum (P_{i, \text{NYC}} \times W_i)} \right) \times 100$$
+
+Jab **Rent** category ko include kiya jata hai, tab **Cost of Living Plus Rent Index (COLPRI)** banta hai:
+
+$$\text{COLPRI} = \frac{(\text{COLI}_{\text{Excl. Rent}} \times 0.605) + (\text{Rent Index} \times 0.395)}{100} \times 100$$
+
+#### 3. Real-world Conversion Example (COLA)
+Agar ek software developer Austin, TX se San Francisco shift hota hai:
+*   $\text{Current Salary}$ = $100,000
+*   $\text{COLI}_{\text{Austin}}$ = 120
+*   $\text{COLI}_{\text{SF}}$ = 180
+
+$$\text{COL-Adjusted Salary} = \text{Current Salary} \times \left( \frac{\text{COLI}_{\text{SF}}}{\text{COLI}_{\text{Austin}}} \right) = \$100,000 \times \left( \frac{180}{120} \right) = \$150,000$$
+
+---
+
+### B. Pollution (POL) Index Calculation
+
+Pollution (POL) Index kisi city ke physical environmental factors, survey data aur Air/Water Quality scores ko aggregate karke banaya jata hai. Iska score **0 (Cleanest) se 100 (Most Polluted)** ke beech hota hai.
+
+#### 1. Input Parameters
+
+| Parameter | Primary Source | Weight ($WP_i$) |
+|-----------|----------------|-----------------|
+| **Air Quality (PM2.5 / PM10)** | WHO, EPA, Local Sensor Networks | **40%** |
+| **Water Quality & Accessibility** | User surveys + municipal health reports | **25%** |
+| **Garbage & Cleanliness** | User perception surveys | **15%** |
+| **Noise & Light Pollution** | Decibel mapping + satellite night-light indexes | **10%** |
+| **Green Spaces & Parks** | Urban planning data | **10%** |
+
+#### 2. Calculation Logic & Formula
+
+Numbeo surveys mein, negative aur positive feedback values ko score range $[-2, +2]$ mein save kiya jata hai, jahan:
+*   $-2$ = Very Dissatisfied (Highly Polluted)
+*   $+2$ = Very Satisfied (Extremely Clean)
+
+Average satisfaction score $S$ ko calculate kiya jata hai:
+
+$$S = \sum (\text{Response}_k \times W_k)$$
+
+Is $S$ score ko inverse scaling ke through Pollution score mein badla jata hai. High pollution anomalies ko amplify karne ke liye, ek **exponential penalization formula** lagaya jata hai:
+
+$$\text{POL Index} = 100 - \left( \frac{S + 2}{4} \times 100 \right)$$
+
+Agar target city mein industrial pollution ya severe PM2.5 levels standard limits se exceed hote hain, toh threshold index modifier use hota hai:
+
+$$\text{POL}_{\text{Final}} = \min\left(100, \text{POL Index} \times (1 + k \cdot \text{AQI}_{\text{exceed}})\right)$$
+*(Jahan $k \approx 0.05$ aur $\text{AQI}_{\text{exceed}}$ represents days PM2.5 exceeded WHO limits).*
+
+---
+
+### C. Local Purchasing Power Index (LPPI)
+
+Purchasing Power directly measure karta hai ki local log apni salary se kitni quantity mein consumer goods khareed sakte hain.
+
+#### Formula:
+
+$$\text{LPPI} = \left( \frac{\text{Average Local Net Salary} / \text{COLPRI}_{\text{Target}}}{\text{Average NYC Net Salary} / \text{COLPRI}_{\text{NYC}}} \right) \times 100$$
+
+#### Interpretation Table:
+
+| LPPI Range | Purchasing Power Capability | Recommendation Engine Action |
+|------------|-----------------------------|------------------------------|
+| **> 120** | Extremely High (Excellent) | Highly Recommend (High savings potential) |
+| **80 - 120** | Moderate / Standard | Stable move (Relocation is financially neutral) |
+| **< 60** | Low Purchasing Power | Recommend negotiation or suggest alternative city |
+
+---
+
+### D. Relocation Wellness & Feasibility Score (RWS)
+
+Location Agent aur Financial Feasibility Agent dono combine hokar user ke profile ke liye ek aggregate **Relocation Wellness Score** nikaalte hain:
+
+$$\text{RWS} = (0.4 \times \text{LPPI}) - (0.3 \times \text{COLPRI}) - (0.2 \times \text{POL Index}) + (0.1 \times \text{Safety Index})$$
+
+*   **RWS > 50**: Highly feasible and recommended relocation.
+*   **RWS < 20**: Warning flags triggered (low savings or high health risk due to pollution).
+
+---
+
+### E. URLs & Datasets for COL & POL Calculation
+
+Niche diye gaye specialized datasets aur APIs ka use karke COL aur POL indexes ko calculate aur update kiya jata hai:
+
+| # | Data Type | Source / Portal | Direct Link | API / Format |
+|---|-----------|-----------------|-------------|--------------|
+| 1 | **Cost of Living Index** | Numbeo Cost of Living Portal | [https://www.numbeo.com/cost-of-living/](https://www.numbeo.com/cost-of-living/) | JSON API & Web Scrape |
+| 2 | **Urban Living Cost Index** | C2ER Cost of Living Index | [https://www.coli.org/](https://www.coli.org/) | CSV / PDF reports |
+| 3 | **Local Rent & Housing Trends** | Zillow Research Data Portal | [https://www.zillow.com/research/data/](https://www.zillow.com/research/data/) | CSV format |
+| 4 | **Living Wage Estimates** | MIT Living Wage Calculator | [https://livingwage.mit.edu/](https://livingwage.mit.edu/) | Web / Scraped |
+| 5 | **Family Budget Calculator** | Economic Policy Institute (EPI) | [https://www.epi.org/resources/budget/](https://www.epi.org/resources/budget/) | Interactive Web Tool |
+| 6 | **Global Air Quality Dataset** | OpenAQ Portal | [https://openaq.org/](https://openaq.org/) | Real-time REST API |
+| 7 | **Air Quality & PM2.5 API** | IQAir AirVisual API | [https://www.iqair.com/air-pollution-api-guide](https://www.iqair.com/air-pollution-api-guide) | JSON API |
+| 8 | **Global Air Quality & Health** | WHO Air Quality Database | [https://www.who.int/data/gho/data/themes/air-pollution](https://www.who.int/data/gho/data/themes/air-pollution) | CSV / JSON format |
+| 9 | **Pollution Index by City** | Numbeo Pollution Index Portal | [https://www.numbeo.com/pollution/](https://www.numbeo.com/pollution/) | JSON API & Web Scrape |
+| 10 | **Environmental Air Quality Data** | US EPA AirData | [https://www.epa.gov/outdoor-air-quality-data](https://www.epa.gov/outdoor-air-quality-data) | CSV / API |
+
