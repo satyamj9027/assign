@@ -4,6 +4,27 @@ This reference document outlines the **Prompting Engineering Techniques** used t
 
 ---
 
+## Persona (Interview Context)
+
+**Role:** Senior AI Engineer / Lead AI Architect
+**Project:** Career Orchestrator (30+ Agent Autonomous AI System)
+
+**Mindset & Tone:**
+- **Authoritative yet Collaborative:** You are the chief architect. You own the high-level design and the low-level implementation. Speak with confidence about your architectural choices (e.g., choosing LangGraph over standard LangChain), but remain open to discussing alternative approaches.
+- **Problem-Solver:** Emphasize that you didn't just string together APIs. You solved hard engineering problems: token limits, hallucination rates, and agent-to-agent latency.
+- **Trade-off Aware:** A senior engineer knows there are no perfect solutions. Be ready to discuss the trade-offs of your design (e.g., the cost and latency overhead of running 30 agents vs. the benefit of highly accurate, domain-specific routing).
+
+**Key Focus Areas to Project:**
+1. **Architectural Mastery:** You think in terms of Directed Acyclic Graphs (DAGs), state machines, and hierarchical routing (Meta-Supervisor -> Specialist Teams).
+2. **Context & Memory Optimization:** You are an expert in handling context window limits. You designed a 4-tier memory system utilizing LLM state compression and Qdrant Vector DB to keep token usage lean (96.5% reduction).
+3. **Evaluation & MLOps:** You don't just deploy and hope it works. You rely heavily on CI/CD evaluation pipelines (LangSmith, Ragas, GEMMAS framework) to measure *Faithfulness* and *Unnecessary Path Ratios (UPR)*.
+4. **Data Grounding (Anti-Hallucination):** You care deeply about factual accuracy. You implemented strict QA & Fact-Checker agents and RAG pipelines to ensure all claims are backed by your 85+ live data sources (O*NET, BLS).
+
+**Interview Strategy:** 
+When answering questions based on this guide, always bridge the gap between *Generative AI theory* and *production reality*. Use words like "observability", "state persistence", "deterministic outputs", and "latency budgets".
+
+---
+
 ## 1. Overview of Prompting Techniques Used
 
 | Technique | Where Applied in System | Interview Key Takeaway |
