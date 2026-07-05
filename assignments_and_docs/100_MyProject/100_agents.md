@@ -6,13 +6,13 @@
 
 ## Table of Contents
 
-| # | Section | Description |
-|---|---------|-------------|
-| **Part I** | Agent & Tools Inventory | All 30+ agents, sub-agents, tools, and data sources |
-| **Part II** | Data Source Master List | 85+ sources with official URLs |
-| **Part III** | Missing Terms & Concepts | Concepts not yet covered |
-| **Part IV** | Memory Management Architecture | Full memory system design |
-| **Part V** | Evaluation Framework | 50+ metrics across all layers |
+| #            | Section                        | Description                                         |
+| --------------| --------------------------------| -----------------------------------------------------|
+| **Part I**   | Agent & Tools Inventory        | All 30+ agents, sub-agents, tools, and data sources |
+| **Part II**  | Data Source Master List        | 85+ sources with official URLs                      |
+| **Part III** | Missing Terms & Concepts       | Concepts not yet covered                            |
+| **Part IV**  | Memory Management Architecture | Full memory system design                           |
+| **Part V**   | Evaluation Framework           | 50+ metrics across all layers                       |
 
 ---
 
@@ -870,6 +870,107 @@ If a specialist agent fails (e.g., USAJOBS API timeout or empty search result), 
 1. It analyzes the error message.
 2. It generates a fallback task (e.g., replacing `search_usajobs()` with a general web search via `search_tavily()`).
 3. It updates the DAG in the graph state, bypassing the failed node to ensure graceful degradation instead of system crashes.
+
+---
+
+## III.15 Markdown (MD) Report Schema Design
+
+This section defines the structured Markdown output contract produced by the **Output Synthesizer & Visualizer Agent (#13)**. Defining this schema ensures consistent UI rendering, downstream parsing, and automated PDF report generation.
+
+### A. MD Report Schema Structure
+
+A standard generated report must contain exactly the following five structural modules, ordered sequentially:
+
+| Module | Heading level | Required Components |
+|---|---|---|
+| **Document Title** | `#` (H1) | Standardized query title prefix + timestamp |
+| **Executive Summary** | None | Unified `> [!NOTE]` alert block outlining the overall career advisory verdict |
+| **1. Personalized Career Match** | `##` (H2) | Overall fit percentage table + RIASEC alignment description |
+| **2. Skill Gap & Learning Roadmap** | `##` (H2) | Detailed skill gaps table + Coursera/edX learning path list |
+| **3. Financial & Geography Analysis** | `##` (H2) | Target city cost-of-living comparison table + RWS calculation |
+| **4. Educational Opportunities** | `##` (H2) | College Scorecard program outcomes + Direct institution contact info |
+| **5. Live Job Market Opportunities** | `##` (H2) | Deduplicated listings table with links |
+| **Verification Footer** | None | QA validation confidence score + source database version stamp |
+
+---
+
+### B. Standard Markdown Output Template
+
+The Synthesizer Agent is programmed to generate reports matching the exact format shown below:
+
+```markdown
+# Career Advisory Report: Senior Data Analyst to Lead Data Scientist Transition
+*Generated on: 2026-07-05T12:00:00Z*
+
+> [!NOTE]
+> **Executive Summary:** Transitioning from Senior Data Analyst to Lead Data Scientist is highly feasible with an estimated 9-month upskilling timeline. The pivot yields a +28% median salary premium. Relocation from Dallas to Chicago is financially justified due to strong purchasing power (LPPI = 112).
+
+---
+
+## 1. Personalized Career Match
+
+| Metric | Score / Status | Description |
+|---|---|---|
+| **Overall Fit Score** | **89%** | High alignment with existing analytics background |
+| **Skills Match** | 82% | Strong Python & SQL foundation; gaps in Machine Learning & MLOps |
+| **Interest Alignment (RIASEC)** | 94% | Investigative (92) + Artistic (60) matches Data Scientist profile |
+| **Education Match** | 90% | B.Tech in CS satisfies target role baseline requirements |
+
+---
+
+## 2. Skill Gap & Learning Roadmap
+
+### Skill Gap Analysis
+| Skill | Current Level | Target Level | Importance | Recommendation |
+|---|---|---|---|---|
+| **Machine Learning** | Intermediate | Advanced | Critical | Implement PyTorch & TensorFlow |
+| **MLOps (Model Deployment)** | None | Intermediate | Medium | Learn Docker, Kubernetes & MLflow |
+| **Big Data Technologies** | Basic | Intermediate | Medium | Master Apache Spark & Databricks |
+
+### Suggested Upskilling Path
+*   **Step 1: Deep Learning Specialization**
+    *   Provider: Coursera (<https://www.coursera.org/about/partners>)
+    *   Duration: 3 months (10 hrs/week)
+*   **Step 2: MLOps Engineering Certificate**
+    *   Provider: edX Course API (<https://www.edx.org/api/v1/catalog/search>)
+    *   Duration: 2 months (8 hrs/week)
+
+---
+
+## 3. Financial & Geography Analysis (Dallas vs. Chicago)
+
+| Location | Median Salary | COL Index | Rent Index | Net Purchasing Power (LPPI) |
+|---|---|---|---|---|
+| **Dallas, TX** (Current) | $95,000 | 114 | 88 | 100 (Baseline) |
+| **Chicago, IL** (Target) | $122,000 | 125 | 102 | 112 (+12% gain) |
+
+*   **Relocation Wellness Score (RWS):** **64.5** (Highly Recommended)
+*   *Note: High local net salary offsets the 9.6% increase in basic cost of living.*
+
+---
+
+## 4. Educational Opportunities (US College Programs)
+
+*   **Harvard University**
+    *   Program: MS in Data Science (Degree Level: Master's)
+    *   Outcomes: Graduation Rate: 98%, Median Earnings: $145,000/yr (3-yr post-grad)
+    *   Financials: Average Net Price: $18,030/yr
+    *   Contact: General Phone: +1 (617) 495-1000 | Website: (<https://college.harvard.edu/admissions>) | Email: `college@fas.harvard.edu`
+
+---
+
+## 5. Live Job Market Opportunities
+
+| Job Title | Company | Location | Key Requirements | Source Link |
+|---|---|---|---|---|
+| **Lead Data Scientist** | Abbott Laboratories | Abbott Park, IL | Python, PyTorch, MLflow | Indeed API (<https://indeed-indeed-v2.p.rapidapi.com>) |
+| **Data Science Manager** | Discover Financial | Riverwoods, IL | Spark, SQL, Team Leadership | LinkedIn API (<https://www.linkedin.com/developers/apps>) |
+
+---
+**Report Verification Stamp:**
+*   **QA Status:** PASS (Factual Consistency: 96%, Hallucination Check: 0.0%)
+*   **Data Sources Used:** O*NET Database v29.0 · BLS OEWS 2025 · College Scorecard 2025
+```
 
 ---
 
