@@ -1416,6 +1416,8 @@ graph TB
 
 ---
 
+
+
 ## V.8 Evaluation Metrics Summary Matrix
 
 | Category | Metrics | Tools | Frequency |
@@ -1448,3 +1450,126 @@ graph TB
 ---
 
 > **Total Evaluation Metrics: 50+** covering response quality, collaboration quality, agent performance, retrieval quality, user satisfaction, career prediction accuracy, and regulatory compliance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+---
+---
+---
+---
+
+
+
+
+
+**Lifestyle & Budgeting ke liye data sources** — bilkul O*NET / BLS style mein, official + high-quality sources ke saath.
+
+Main ne web search karke latest reliable sources nikaale hain. Yeh Career Orchestrator document ke **Cost of Living & Economic Geography** section ko extend karta hai.
+
+### 1. Household Expenditures & Budgeting (Core US Official)
+
+| # | Source | URL | Type | Use |
+|---|--------|-----|------|-----|
+| 1 | **BLS Consumer Expenditure Surveys (CE)** | https://www.bls.gov/cex/ | Tables + LABSTAT + Public Use Microdata | Household spending breakdown (housing, food, transport, healthcare, entertainment etc.) by income, age, region |
+| 2 | **BLS CPI (Consumer Price Index)** | https://www.bls.gov/cpi/ | API + Tables | Inflation tracking, real spending adjustment |
+| 3 | **BEA Personal Consumption Expenditures (PCE)** | https://www.bea.gov/data/consumer-spending/main | Tables + API | National consumer spending (goods + services) |
+| 4 | **Survey of Consumer Finances (SCF)** | https://www.federalreserve.gov/econres/scfindex.htm | Microdata + Charts | Detailed household balance sheet, assets, debt, pensions (every 3 years) |
+| 5 | **NY Fed Household Debt & Credit + Survey of Consumer Expectations** | https://www.newyorkfed.org/microeconomics/databank.html | Reports + Microdata | Debt levels, credit card, auto, student loans, spending expectations |
+
+### 2. Cost of Living & Regional Price Indices
+
+| # | Source | URL | Type | Use |
+|---|--------|-----|------|-----|
+| 6 | **BEA Regional Price Parities (RPP)** | https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area | Tables + API | State & metro area price level comparison (buying power) |
+| 7 | **Numbeo Cost of Living** | https://www.numbeo.com/api/ | Paid API + Web | City-level prices (rent, groceries, transport, restaurants) — already in original doc |
+| 8 | **WhereNext (Free Numbeo Alternative)** | https://getwherenext.com/ | Free CC-BY API + CSV | Institutional data (World Bank, OECD, Eurostat) based COL + lifestyle rankings |
+| 9 | **C2ER Cost of Living Index** | https://www.coli.org/ | CSV / Subscription | Official US city COL index |
+| 10 | **Zillow Research Data** | https://www.zillow.com/research/data/ | CSV | Rent, home values, market trends |
+
+### 3. Living Wage / Family Budget Calculators (Already partially in your doc)
+
+| # | Source | URL | Type | Use |
+|---|--------|-----|------|-----|
+| 11 | **MIT Living Wage Calculator** | https://livingwage.mit.edu/ | Web + Downloadable data | County/metro living wage by family type (food, housing, childcare, transport, taxes) |
+| 12 | **EPI Family Budget Calculator** | https://www.epi.org/budget | Web + Full dataset download | Modest but adequate budget by county/metro |
+| 13 | **University of Washington Self-Sufficiency Standard** | (State-specific, searchable) | Reports + Data | Self-sufficiency budgets |
+| 14 | **United Way ALICE Household Survival Budget** | United Way ALICE reports | Reports | Survival budgets for Asset Limited Income Constrained Employed households |
+
+### 4. Housing Costs
+
+| # | Source | URL | Type | Use |
+|---|--------|-----|------|-----|
+| 15 | **HUD Fair Market Rents (FMR)** | https://www.huduser.gov/portal/datasets/fmr.html | Excel + **API** | Official 40th percentile rents by metro/county (by bedroom size) |
+| 16 | **HUD Small Area Fair Market Rents (SAFMR)** | Same HUD portal | Excel / ZIP | ZIP-code level rents |
+
+### 5. Food & Grocery Costs
+
+| # | Source | URL | Type | Use |
+|---|--------|-----|------|-----|
+| 17 | **USDA Food Plans (Thrifty / Low-Cost / Moderate / Liberal)** | https://www.fns.usda.gov/cnpp/usda-food-plans-cost-food-monthly-reports | Monthly PDF + Excel | Official cost of healthy diet at 4 levels (updated monthly for inflation) |
+
+### 6. Quality of Life / Lifestyle / Well-being
+
+| # | Source | URL | Type | Use |
+|---|--------|-----|------|-----|
+| 18 | **OECD Better Life Index / Well-being Data Monitor** | https://www.oecd.org/en/data/tools/oecd-better-life-index.html | Interactive + SDMX API | 11 dimensions: Housing, Income, Jobs, Community, Education, Environment, Civic Engagement, Health, Life Satisfaction, Safety, Work-Life Balance |
+| 19 | **World Bank Open Data** | https://data.worldbank.org/ | API + CSV | PPP, poverty, health expenditure, GINI, electricity access etc. |
+| 20 | **Gallup World Poll** (via OECD / other reports) | Gallup / OECD references | Survey data | Subjective well-being, life satisfaction |
+
+### 7. Extra Useful Supporting Sources
+
+- **FRED (St. Louis Fed)** → https://fred.stlouisfed.org/ — Aggregated series from BLS, BEA, etc.
+- **Data.gov Workforce / Consumer tags** — Many related datasets
+- **EPA AirData + OpenAQ + IQAir** — Already in your original environmental section (lifestyle impact)
+
+### Recommendation for Career Orchestrator Integration
+
+**Priority order for agents (Location, Financial Feasibility, Wellness agents):**
+
+1. **BLS CE** + **BEA RPP** → Core spending + regional price adjustment  
+2. **MIT Living Wage + EPI Family Budget** → Realistic “modest lifestyle” thresholds  
+3. **HUD FMR + USDA Food Plans** → Precise housing + food components  
+4. **OECD Better Life Index** → Lifestyle / work-life balance / safety scoring  
+5. **Numbeo / WhereNext** → Fast city-to-city comparisons  
+
+
+
+
+
+
+
+---
+
+---
+---
+---
+---
+
+
+
+
+
+
+
+
+
+
+
