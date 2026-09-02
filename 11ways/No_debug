@@ -1,0 +1,472 @@
+**Strictly Flow This Structure:**  
+Standard Structure :
+Problem Explainer
+        ↓
+code planner
+        ↓
+Problem Explanation
+        ↓
+Test Cases
+        ↓
+Visualization (अगर जरूरी हो)
+        ↓
+11 Methods Code with No-Gaps in Code-Lines (Mandatory)
+
+**Prompt for Future Use {हिन्दी(देवनागरी) + Imp Words(English)}:**  
+हाय Grok, मुझे एक coding problem solve करना है। Problem: [PROBLEM_NAME]। कृपया इसे 11 अलग-अलग तरीकों से solve करो, जिसमें से top 2 methods बिना function के हों, फिर वही 2 methods function-based हों, और बाकी 6 methods भी function-based हों। एक method में list comprehension और एक में lambda function use करना mandatory है। 11वां method सबसे efficient हो, जो किसी DSA algorithm (जैसे divide and conquer, heap, dynamic programming, any type algorithm आदि) use करके हो, भले ही वह पहले दिखाया गया हो। निम्नलिखित नियमों का पालन करो:
+
+1️⃣ **सामान्य नियम (Rules):**  
+- History OFF 🚫 — कोई पुराना context use नहीं करना। सिर्फ current query पर focus करो।  
+- Response short, direct, और to-the-point हो। Extra details ❌।  
+- हर code में output शामिल हो (# Output: <result> के रूप में code snippet में)।  
+
+2️⃣ **Preferred Methods:**  
+- सबसे पहले दो preferred methods दिखाओ जो LeetCode या general coding के लिए सबसे suitable हों (efficient, readable, और constraints के लिए optimized)। ये दोनों बिना function के हों।  
+- फिर वही दो methods function-based दिखाओ।  
+- पाँचवाँ method brute force हो (function-based)।  
+- बाकी 5 methods में एक list comprehension और एक lambda function use करो।  
+- 11वाँ method सबसे efficient हो, जो किसी DSA algorithm (जैसे divide and conquer, heap, आदि) use करे।  
+
+3️⃣ **Code Structure:**  
+- Problem को Hindi sentences में explain करो, English technical keywords (जैसे list, loop, index, count, sum, pair) use करके।  
+- Minimum 2 test cases दो, code से पहले **code snippet box** में, इस format में:  
+```python
+Test Case 1:
+Input: <values>
+Output: <values>
+Explanation: <explanation in Hindi with English keywords>
+Test Case 2:
+Input: <values>
+Output: <values>
+Explanation: <explanation in Hindi with English keywords>
+```
+- अगर problem tree, graph, triangular, stars, या pattern-based है, तो Test Cases के ठीक नीचे visualization दिखाओ (ASCII art या simple description in Hindi, English keywords के साथ)।  
+- हर method के बाद **Time Complexity** और **Space Complexity** explain करो, कारण सहित।  
+- हर method के code के ठीक नीचे step-by-step explanation points में दो, Hindi में, English technical keywords के साथ।  
+- Code में short variable names (जैसे dict1, arr1, set1, num) use करो।  
+- Comments Devanagari Hindi में हों, simple और common terms के साथ, English technical keywords use करके।  
+- If-else को print statement के अंदर avoid करो (जैसे `print("Anagram" if freq1 == freq2 else "Not Anagram")` नहीं)।  
+- Dynamic programming, LRU, या bit manipulation avoid करो, जब तक problem explicitly न माँगे।  
+- Extra libraries (जैसे re) avoid करो।  
+
+4️⃣ **Output Format:**  
+- हर method का code **code snippet box** में हो, और output `# Output: <result>` के रूप में code के अंदर शामिल हो।  
+- हर method के बाद step-by-step explanation points में Hindi में, English technical keywords के साथ।  
+- Code Python 2.7 में हो, जब तक problem LeetCode का न हो।  
+- Variable names में ‘seen’ की जगह set1, dict1 जैसे short names use करो।  
+- Method/function names minimized लेकिन meaningful हों (जैसे findMax(), getSum())।  
+- # Output: <result>
+
+5️⃣ **Strictly Response Structure:{हिन्दी(देवनागरी) + Imp Words(English)}**
+- #Problem Explainer {हिन्दी(देवनागरी) + Imp Words(English)}
+```python
+इस section में problem को clear और simple Hindi में explain करो।
+इन points को cover करो:
+1. Problem Name
+2. Definition
+3. Input और Output
+4. Problem का main Goal
+5. Important Points / Constraints
+6. Example का short explanation
+7. कौन-सा Data Structure या Algorithm suitable है
+8. Best Algorithm और उसे चुनने का reason
+9. Expected Time Complexity और Space Complexity
+
+Rules:
+- Hindi simple और direct हो।
+- Technical keywords जैसे List, Array, Element, Index, Loop, Set, HashMap, Constraint English में ही रहें।
+- Unnecessary theory या extra details नहीं।
+- Problem की exact requirement और important conditions clearly बताओ।
+```
+- #Code Planner {हिन्दी(देवनागरी) + Imp Words(English)}
+```python
+इस section में coding से पहले complete solution planning दो।
+
+1. Traditional / Brute Force Algorithm:
+   - Step-by-step logic बताओ।
+   - फिर दिए गए example पर short Dry Run दिखाओ।
+2. Efficient Algorithm:
+   - Step-by-step logic बताओ।
+   - Efficient approach क्यों बेहतर है, short reason दो।
+3. Complexity Plan:
+   - Brute Force → Time Complexity + Space Complexity
+   - Efficient → Time Complexity + Space Complexity
+
+Rules:
+- यहाँ पूरा code नहीं लिखना है।
+- सिर्फ Algorithm, Logic, Flow और Dry Run explain करना है।
+- Steps numbered और easy-to-follow हों।
+- Hindi में explain करो, लेकिन सभी important technical keywords English में रखें।
+- आगे के 11 methods इसी plan को follow करके होने चाहिए।
+```
+
+- Problem Explanation {हिन्दी(देवनागरी) + Imp Words(English)}
+- Test Cases (code snippet box में)  
+- Visualization (अगर problem tree, graph, triangular, stars, या pattern-based है)  
+- ✅ 1. Preferred Method – <Method Name> (Without Function)  
+  - Code (with output)  
+  - Step-by-step Explanation (points में)  
+  - Time Complexity  
+  - Space Complexity  
+- ✅ 2. Preferred Method – <Method Name> (Without Function)  
+  - Code (with output)  
+  - Step-by-step Explanation (points में)  
+  - Time Complexity  
+  - Space Complexity  
+- ✅ 3. Preferred Method – <Method Name> (With Function)  
+  - Code (with output)  
+  - Step-by-step Explanation (points में)  
+  - Time Complexity  
+  - Space Complexity  
+- ✅ 4. Preferred Method – <Method Name> (With Function)  
+  - Code (with output)  
+  - Step-by-step Explanation (points में)  
+  - Time Complexity  
+  - Space Complexity  
+- ✅ 5. Brute Force Method – <Method Name> (With Function)  
+  - Code (with output)  
+  - Step-by-step Explanation (points में)  
+  - Time Complexity  
+  - Space Complexity  
+- ✅ 6. Other Method – <Method Name> (With Function)  
+  - Code (with output)  
+  - Step-by-step Explanation (points में)  
+  - Time Complexity  
+  - Space Complexity  
+- ✅ 7. Other Method – <Method Name> (With Function)  
+  - Code (with output)  
+  - Step-by-step Explanation (points में)  
+  - Time Complexity  
+  - Space Complexity  
+- ✅ 8. Other Method – <Method Name> (With Function)  
+  - Code (with output)  
+  - Step-by-step Explanation (points में)  
+  - Time Complexity  
+  - Space Complexity  
+- ✅ 9. Other Method – Using List Comprehension (With Function)  
+  - Code (with output)  
+  - Step-by-step Explanation (points में)  
+  - Time Complexity  
+  - Space Complexity  
+- ✅ 10. Other Method – Using Lambda (With Function)  
+  - Code (with output)  
+  - Step-by-step Explanation (points में)  
+  - Time Complexity  
+  - Space Complexity  
+- ✅ 11. Additional Most Efficient Method – <DSA Algorithm Name> (With Function)  
+  - Code (with output)  
+  - Step-by-step Explanation (points में)  
+  - Time Complexity  
+  - Space Complexity  
+
+**उदाहरण Problem:**  
+[PROBLEM_NAME] = "Find Maximum Element in Array"  
+या कोई और problem जैसे Prime check, Remove Duplicates, Unique Chars, Max Sum Subarray, Two Sum।  
+
+**अतिरिक्त नोट:**  
+- Code clean और short हो।  
+- Hindi में simple words use करो, Hinglish avoid करो।  
+- Technical terms (जैसे list, loop, index) English में ही रहें।  
+- अगर LeetCode problem है, तो class-based format (जैसे `class Solution:`) use करो।  
+- हमेशा Python 2.7 use करो, जब तक LeetCode problem न हो।  
+- 11वां method सबसे efficient हो, जो किसी DSA algorithm का use करे।  
+
+कृपया इस format में problem solve करो और response दो।
+
+---------------------------------------
+**Problem Explainer:**
+#Problem Explainer
+```python
+Problem:
+एक List में मौजूद duplicate elements को हटाकर केवल unique elements की List बनानी है।
+Definition:
+हर element output में केवल एक बार होना चाहिए।
+Input:
+arr = [1, 2, 2, 3, 4, 4, 5]
+Output:
+[1, 2, 3, 4, 5]
+
+Explanation:
+Input List में 2 और 4 दो-दो बार मौजूद हैं।
+Duplicates हटाने के बाद हर element केवल एक बार रहेगा।
+Important Points:
+- Duplicate elements remove करने हैं।
+- Unique elements रखने हैं।
+- अगर Order maintain करना जरूरी नहीं है, तो Set सबसे simple method है।
+- Order maintain करना हो तो Set + Loop बेहतर है।
+- Brute Force → O(n²) Time
+- HashSet → O(n) Average Time
+- Space → O(n)
+Best Algorithm:
+HashSet / Set
+Reason:
+Set में duplicate elements automatically store नहीं होते।
+इसलिए Lookup और Insertion Average O(1) में हो सकते हैं।
+```
+**Code Planner:**  
+```python
+#Code Planner
+Problem:
+List से duplicate elements हटाने हैं और unique elements की list बनानी है।
+
+Traditional Algorithm (Brute Force):
+1. Empty result list बनाओ।
+2. हर num पर Loop चलाओ।
+3. अगर num result में नहीं है → result में add करो।
+4. Final result return करो।
+Basic Dry Run:
+Input: [1, 2, 2, 3, 4, 4, 5]
+
+1 → result = [1]
+2 → result = [1, 2]
+2 → already exists → skip
+3 → result = [1, 2, 3]
+4 → result = [1, 2, 3, 4]
+4 → already exists → skip
+5 → result = [1, 2, 3, 4, 5]
+
+Output: [1, 2, 3, 4, 5]
+
+Efficient Algorithm (HashSet):
+1. Empty Set बनाओ।
+2. List पर Loop चलाओ।
+3. अगर num Set में नहीं है:
+   → Set में add करो
+   → Result list में add करो
+4. Final unique list return करो।
+
+3. O(n) Time में Solution
+Key Points:
+Brute Force → O(n²) Time, O(n) Space
+HashSet → O(n) Average Time, O(n) Space
+Duplicates automatically track किए जाते हैं।
+Order maintain करना हो तो Loop + Set Tracking बेहतर है।
+```
+**Problem Explanation:**  
+Problem का नाम है "Remove Duplicates in List"। हमें एक list से duplicate elements हटाने हैं, ताकि हर element केवल एक बार रहे। Input एक list of integers है, और output एक list होगी जिसमें कोई duplicates नहीं होंगे। List का order maintain करना जरूरी नहीं है।  
+
+**Test Cases:**  
+```python
+Test Case 1:
+Input: [1, 2, 2, 3, 4, 4, 5]
+Output: [1, 2, 3, 4, 5]
+Explanation: Input list में 2 और 4 दो बार हैं। Duplicates हटाने पर unique elements [1, 2, 3, 4, 5] मिलते हैं।
+Test Case 2:
+Input: [1, 1, 1]
+Output: [1]
+Explanation: Input list में केवल 1 बार-बार है। Duplicate हटाने पर केवल [1] रहता है।
+```
+
+✅ 1. Preferred Method – Using Set (Without Function)
+```python
+arr = [1, 2, 2, 3, 4, 4, 5]
+arr = list(set(arr))  # Set hashing से duplicate elements automatically drop होते हैं, फिर List में convert
+print arr
+# Output: [1, 2, 3, 4, 5]
+```
+**Step-by-step Explanation:**
+- Input List को Set में convert करते हैं।
+- Set automatically duplicate elements हटा देता है।
+- Set को वापस List में convert करते हैं।
+- Final unique List print करते हैं।
+**Time Complexity:** O(n) — Set creation और conversion एक pass में होते हैं।
+**Space Complexity:** O(n) — unique elements Set में store होते हैं।
+
+✅ 2. Preferred Method – Using Dictionary (Without Function)
+```python
+arr = [1, 2, 2, 3, 4, 4, 5]
+dict1 = {}
+for num in arr:
+    dict1[num] = True  # Dictionary key हमेशा unique रहती है, same key overwrite हो जाती है
+arr = list(dict1.keys())  # Keys निकालकर unique List बनाते हैं
+print arr
+# Output: [1, 2, 3, 4, 5]
+```
+**Step-by-step Explanation:**
+- Empty Dictionary बनाते हैं।
+- Loop से हर element को key के रूप में डालते हैं।
+- Dictionary keys हमेशा unique रहती हैं।
+- Keys को List में convert करके print करते हैं।
+**Time Complexity:** O(n) — एक Loop और Dictionary operations average O(1) हैं।
+**Space Complexity:** O(n) — unique keys Dictionary में store होते हैं।
+
+✅ 3. Preferred Method – Using Set (With Function)
+```python
+def remDupSet(arr):
+    result = list(set(arr))  # Set uniqueness property से duplicates हटते हैं
+    return result
+arr = [1, 2, 2, 3, 4, 4, 5]
+print remDupSet(arr)
+# Output: [1, 2, 3, 4, 5]
+```
+**Step-by-step Explanation:**
+- remDupSet function बनाते हैं।
+- Input List को Set में convert करते हैं।
+- Set को List बनाकर return करते हैं।
+- Function call करके unique List print करते हैं।
+**Time Complexity:** O(n) — Set creation O(n) है।
+**Space Complexity:** O(n) — Set unique elements रखता है।
+
+✅ 4. Preferred Method – Using Dictionary (With Function)
+```python
+def remDupDict(arr):
+    dict1 = {}
+    for num in arr:
+        dict1[num] = True  # HashMap key insert, duplicate key फिर से नहीं बनती
+    result = list(dict1.keys())  # unique keys को List में बदलते हैं
+    return result
+arr = [1, 2, 2, 3, 4, 4, 5]
+print remDupDict(arr)
+# Output: [1, 2, 3, 4, 5]
+```
+**Step-by-step Explanation:**
+- remDupDict function बनाते हैं।
+- Empty Dictionary बनाते हैं।
+- Loop से हर num को key बनाते हैं।
+- Unique keys की List return करते हैं।
+**Time Complexity:** O(n) — Loop और HashMap operations O(n) हैं।
+**Space Complexity:** O(n) — Dictionary unique keys store करता है।
+
+✅ 5. Brute Force Method – Check Each Element (With Function)
+```python
+def bruteRemDup(arr):
+    result = []
+    for num in arr:
+        if num not in result:  # Linear search: element result List में पहले से है या नहीं
+            result.append(num)  # पहली बार आया तो unique माना और add किया
+    return result
+arr = [1, 2, 2, 3, 4, 4, 5]
+print bruteRemDup(arr)
+# Output: [1, 2, 3, 4, 5]
+```
+**Step-by-step Explanation:**
+- bruteRemDup function बनाते हैं।
+- Empty result List बनाते हैं।
+- हर num को result में search करते हैं।
+- अगर नहीं मिला तो append करते हैं।
+- Final unique List return करते हैं।
+**Time Complexity:** O(n^2) — हर element के लिए List search O(n) लेता है।
+**Space Complexity:** O(n) — result List unique elements रखती है।
+
+✅ 6. Other Method – Using Loop with Set Tracking (With Function)
+```python
+def trackRemDup(arr):
+    set1 = set()  # seen elements track करने के लिए HashSet
+    result = []
+    for num in arr:
+        if num not in set1:  # O(1) lookup से पता चलता है कि element नया है
+            set1.add(num)  # Set में mark कर दिया ताकि अगली बार skip हो
+            result.append(num)  # पहली occurrence को result में रखते हैं, order बचा रहता है
+    return result
+arr = [1, 2, 2, 3, 4, 4, 5]
+print trackRemDup(arr)
+# Output: [1, 2, 3, 4, 5]
+```
+**Step-by-step Explanation:**
+- trackRemDup function बनाते हैं।
+- Empty Set और result List बनाते हैं।
+- हर num को Set में check करते हैं।
+- नई value को Set और result दोनों में add करते हैं।
+- Order-preserving unique List return करते हैं।
+**Time Complexity:** O(n) — Set lookup/add average O(1) है।
+**Space Complexity:** O(n) — Set और result दोनों unique values रखते हैं।
+
+✅ 7. Other Method – Using Count Check (With Function)
+```python
+def countRemDup(arr):
+    result = []
+    for num in arr:
+        if result.count(num) == 0:  # count 0 मतलब यह element result में पहली बार आ रहा है
+            result.append(num)
+    return result
+arr = [1, 2, 2, 3, 4, 4, 5]
+print countRemDup(arr)
+# Output: [1, 2, 3, 4, 5]
+```
+**Step-by-step Explanation:**
+- countRemDup function बनाते हैं।
+- Empty result List बनाते हैं।
+- हर num का result.count check करते हैं।
+- Count 0 हो तो append करते हैं।
+- Unique List return करते हैं।
+**Time Complexity:** O(n^2) — count हर बार O(n) लेता है।
+**Space Complexity:** O(n) — result List O(n) space लेती है।
+
+✅ 8. Other Method – Using Index Tracking (With Function)
+```python
+def idxRemDup(arr):
+    result = []
+    for i in range(len(arr)):
+        if arr[i] not in arr[:i]:  # left slice में search: पहले वाले indexes पर यही value आई या नहीं
+            result.append(arr[i])  # पहली index वाली value ही unique मानी जाती है
+    return result
+arr = [1, 2, 2, 3, 4, 4, 5]
+print idxRemDup(arr)
+# Output: [1, 2, 3, 4, 5]
+```
+**Step-by-step Explanation:**
+- idxRemDup function बनाते हैं।
+- Index Loop चलाते हैं।
+- Current element को previous slice में search करते हैं।
+- नहीं मिला तो result में append करते हैं।
+- Unique List return करते हैं।
+**Time Complexity:** O(n^2) — हर index पर slice search O(n) है।
+**Space Complexity:** O(n) — result List unique elements रखती है।
+
+✅ 9. Other Method – Using List Comprehension (With Function)
+```python
+def compRemDup(arr):
+    result = [num for i, num in enumerate(arr) if num not in arr[:i]]  # index i से पहले value न हो तभी include
+    return result
+arr = [1, 2, 2, 3, 4, 4, 5]
+print compRemDup(arr)
+# Output: [1, 2, 3, 4, 5]
+```
+**Step-by-step Explanation:**
+- compRemDup function बनाते हैं।
+- List comprehension में enumerate से index और value लेते हैं।
+- अगर value previous slice में नहीं है तो include करते हैं।
+- बनी हुई unique List return करते हैं।
+**Time Complexity:** O(n^2) — हर check में slice search O(n) है।
+**Space Complexity:** O(n) — comprehension नई List बनाती है।
+
+✅ 10. Other Method – Using Lambda (With Function)
+```python
+def lambRemDup(arr):
+    result = list((lambda x: set(x))(arr))  # lambda List लेता है, Set बनाकर uniqueness apply करता है
+    return result
+arr = [1, 2, 2, 3, 4, 4, 5]
+print lambRemDup(arr)
+# Output: [1, 2, 3, 4, 5]
+```
+**Step-by-step Explanation:**
+- lambRemDup function बनाते हैं।
+- Lambda List को Set में convert करता है।
+- Set को List में बदलकर return करते हैं।
+- Duplicates Set की वजह से हट जाते हैं।
+**Time Complexity:** O(n) — Set conversion O(n) है।
+**Space Complexity:** O(n) — Set unique elements store करता है।
+
+✅ 11. Additional Most Efficient Method – HashSet Algorithm (With Function)
+```python
+def hashRemDup(arr):
+    set1 = set()  # HashSet / Hash Table बनाते हैं
+    for num in arr:
+        set1.add(num)  # hash(num) से bucket में insert, duplicate hash collision पर ignore
+    result = list(set1)  # unique hashed values को List में निकालते हैं
+    return result
+arr = [1, 2, 2, 3, 4, 4, 5]
+print hashRemDup(arr)
+# Output: [1, 2, 3, 4, 5]
+```
+**Step-by-step Explanation:**
+- hashRemDup function बनाते हैं।
+- Empty HashSet बनाते हैं।
+- हर num को HashSet में add करते हैं।
+- HashSet duplicate accept नहीं करता।
+- Set को List में convert करके return करते हैं।
+**Time Complexity:** O(n) — हर insert average O(1), कुल एक pass।
+**Space Complexity:** O(n) — HashSet unique elements रखता है।
+
+-------------------------------------------------------------
+
