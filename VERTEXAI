@@ -1,0 +1,488 @@
+
+
+
+
+
+**Vertex AI** का official Docs 2026 में **Gemini Enterprise Agent Platform** में merge हो रहा है। पुराना नाम Vertex AI है, नया umbrella नाम Agent Platform है — features वही हैं, menu/branding बदला है।
+
+एक लाइन: **Vertex AI = Google Cloud का unified ML + GenAI + Agents platform** (200+ Models, Training, Serving, RAG, Agents, MLOps, Governance)।
+
+---
+
+## Big Picture Hierarchy
+
+```
+Google Cloud Account / Organization
+ └── Project + Region
+      └── IAM / VPC-SC / CMEK / VPC
+           └── Gemini Enterprise Agent Platform  (formerly Vertex AI)
+                ├── BUILD
+                │    ├── Agent Studio / Vertex AI Studio
+                │    ├── Agent Development Kit (ADK)
+                │    ├── Agent Garden
+                │    ├── Model Garden (200+ models)
+                │    ├── RAG Engine
+                │    ├── Vector Search
+                │    ├── Datasets + Workbench / Colab Enterprise
+                │    ├── AutoML + Custom Training
+                │    └── Agents API + Interactions API
+                ├── SCALE
+                │    ├── Agent Runtime / Agent Engine
+                │    ├── Sessions
+                │    ├── Memory Bank
+                │    ├── Code Execution (sandbox)
+                │    ├── Endpoints (Online Inference)
+                │    └── Batch Prediction
+                ├── GOVERN
+                │    ├── Agent Registry (agents + MCP servers + tools)
+                │    ├── Agent Identity
+                │    ├── Agent Gateway
+                │    ├── Model Armor
+                │    ├── Content Protection / Semantic Governance
+                │    └── Threat + Vulnerability Scanning
+                └── OPTIMIZE
+                     ├── Evaluation (AutoRaters, Online Eval)
+                     ├── Simulation / Personas
+                     ├── Observability (Trace / Logs / Metrics)
+                     └── Prompt Optimization
+```
+
+GCP deploy chain (code → URL) Agent Platform के साथ:
+
+```
+Laptop code (ADK / Python SDK)
+ └── Git + GitHub
+      └── Cloud Build / GitHub Actions
+           └── Artifact Registry / Model Registry
+                └── Agent Runtime  या  Cloud Run  या  GKE
+                     └── Endpoint / Ingress
+                          └── Internet URL
+```
+
+---
+
+## Module 0 — Platform Basics
+
+- Vertex AI क्या है vs Google AI Studio vs Gemini API
+- Console path: **Vertex AI → Models / Agents** (अब Agent Platform)
+- Regional vs Global Endpoint: `REGION-aiplatform.googleapis.com`
+- SDK: **Vertex AI SDK**, **Gen AI SDK**
+- Billing, Quotas, Provisioned Throughput, PayGo / Flex / Priority
+- Data Residency, VPC-SC, CMEK, Access Transparency
+
+---
+
+## Module 1 — Model Garden + Foundation Models
+
+**Model Garden** = 200+ enterprise-ready Models का catalog।
+
+```
+Model Garden
+ ├── Google Models
+ │    ├── Gemini (text / vision / audio / video / thinking)
+ │    ├── Imagen (image)
+ │    ├── Veo (video)
+ │    ├── Lyria (audio / music)
+ │    ├── Embeddings (text + multimodal)
+ │    └── Gemma / Codey (legacy + OSS family)
+ ├── Partner MaaS (managed API)
+ │    └── Anthropic Claude (Opus / Sonnet / Haiku)
+ └── Open Models (deploy या MaaS)
+      ├── Llama
+      ├── DeepSeek
+      ├── Mistral / Mixtral
+      └── अन्य OSS
+```
+
+पढ़ना ज़रूरी:
+
+- Model selection (Flash vs Pro, cost vs latency vs quality)
+- Context Window, Thinking Budget, Thought Summaries
+- System Instructions, Structured Output, Function Calling
+- Context Caching / Prompt Caching
+- Batch Prediction
+- Grounding with Google Search / Agent Search
+
+---
+
+## Module 2 — Vertex AI Studio / Agent Studio (Low-code)
+
+- Prompt Design + Prompt Engineering
+- Multimodal Prompt (text + image + video + audio)
+- Temperature, Top-P, Safety Filters
+- Prompt Gallery
+- Compare Models side-by-side
+- Save Prompt → Deploy as App / Agent
+- Media: Imagen generate/edit, image→HTML, watermark check
+
+Official short course theme: **Introduction to Vertex AI Studio** (~90 min)।
+
+---
+
+## Module 3 — GenAI App Capabilities (Syllabus Core)
+
+| Topic | क्या सीखो |
+|--------|-----------|
+| Chat Completions | multi-turn chat |
+| Function Calling / Tools | external APIs |
+| Structured Output | JSON / Schema |
+| Code Execution | sandboxed Python |
+| Grounding | Search + enterprise data |
+| RAG Engine | managed RAG runtime |
+| Embeddings | text + multimodal |
+| Evaluation Service | quality metrics |
+| Tuning | SFT / adapter / distillation style customization |
+| Live API | low-latency voice/video |
+
+Supported capability list Docs में अलग table है (Batch, Function Calling, RAG Engine, Context Caching, Provisioned Throughput…)।
+
+---
+
+## Module 4 — Search, RAG, Grounding
+
+```
+User Query
+ └── Retrieval
+      ├── Agent Search  (पुराना Vertex AI Search)
+      ├── Vector Search  (dense + sparse + hybrid)
+      ├── RAG Engine     (managed orchestration)
+      └── Existing Search / Bring-your-retriever
+           └── Generation (Gemini + citations)
+```
+
+Syllabus topics:
+
+- Chunking, Embeddings, Index, Endpoint
+- Hybrid Search (keyword + vector)
+- Metadata Filters / ACL
+- Grounding overview
+- RAG evaluation: Faithfulness, Context Precision/Recall, Answer Relevancy
+
+Vector Search = पुराना Matching Engine। Index → Deploy → Query।
+
+---
+
+## Module 5 — Agents (सबसे बड़ा नया syllabus)
+
+Google का Agent stack:
+
+```
+ADK (code)  +  Agent Studio (low-code)
+ └── Agent Garden (templates)
+      └── Deploy → Agent Runtime / Agent Engine
+           ├── Sessions (short-term state)
+           ├── Memory Bank (long-term memory)
+           ├── Code Execution
+           ├── MCP tools
+           └── A2A (Agent-to-Agent)
+```
+
+पढ़ो:
+
+1. **ADK** — Python / Go / Java / TypeScript, model-agnostic
+2. **Agent Studio** — visual reasoning loops
+3. **Agent Garden** — prebuilt agents
+4. **Managed Agents API + Interactions API**
+5. **MCP** — tools/resources/prompts; Agent Registry में MCP servers catalog
+6. **A2A** — multi-agent orchestration
+7. Patterns: ReAct, Plan-and-Execute, Supervisor–Worker, Hierarchical, Maker–Checker
+
+Production-Ready AI path में अलग modules: Developing Agents, Deploying Agents, Agent Production Patterns (Agentic RAG + MCP + A2A)।
+
+---
+
+## Module 6 — Classic ML (AutoML + Custom Training)
+
+यह Vertex AI का पुराना लेकिन exam-critical हिस्सा है।
+
+```
+Data (GCS / BigQuery / Managed Dataset)
+ └── Workbench / Colab Enterprise
+      ├── AutoML (tabular / image / text / video / forecast)
+      └── Custom Training
+           ├── TensorFlow / PyTorch / XGBoost / scikit-learn
+           ├── Custom Container
+           ├── GPU / TPU / distributed training
+           ├── Hyperparameter Tuning
+           └── Reduction Server / Horovod
+                └── Model Artifact → Model Registry
+```
+
+- Feature Store (offline + online features)
+- Experiments + TensorBoard
+- BigQuery ML (SQL से model) + register into Model Registry
+
+---
+
+## Module 7 — Serving / Inference
+
+```
+Model Registry
+ ├── Online Endpoint
+ │    ├── autoscaling
+ │    ├── traffic split / A/B
+ │    └── private endpoint
+ ├── Batch Prediction
+ └── Deploy open models
+      ├── Vertex Endpoint
+      ├── Cloud Run
+      └── GKE
+```
+
+Topics: latency, QPS, GPU choice, model versioning, aliases, canary.
+
+---
+
+## Module 8 — MLOps
+
+```
+Vertex AI Pipelines (Kubeflow / TFX style)
+ └── Components: ingest → train → eval → register → deploy
+      └── CI/CD/CT
+           ├── Cloud Build / GitHub Actions
+           ├── scheduled retrain
+           └── Model Monitoring
+                ├── feature skew
+                ├── drift
+                └── alerting
+```
+
+MLOps Docs: Pipelines + Training scale + Monitoring + Explanations।
+
+---
+
+## Module 9 — Governance / Security (Agent era)
+
+```
+Policy + Identity + Access + Guardrails + Monitoring + Audit + HITL
+ ├── Agent Identity   (हर agent की अपनी identity)
+ ├── Agent Gateway    (tool-call policy, auth, rate limit)
+ ├── Model Armor      (prompt + response screening)
+ ├── Content Protection / Semantic Governance
+ ├── Prompt Injection / Jailbreak / PII / malicious URL
+ ├── Threat + Vulnerability Scanning
+ └── AI Content Detection API
+```
+
+IAM roles, least privilege, secrets isolation, no keys in prompts।
+
+---
+
+## Module 10 — Evaluation + Observability
+
+- Task Success Rate
+- Trajectory evaluation (tool calls, loops)
+- LLM-as-a-Judge / Multi-Turn AutoRaters
+- Online Evaluation on live traffic
+- Simulation with personas
+- Unified Trace Viewer (OTel-style spans: agent run → LLM → tool)
+- Cost: tokens, cache hit/miss, tool-call count, latency / TTFT
+
+---
+
+## Official Learning Path (Google)
+
+**Production-Ready AI with Google Cloud:**
+
+1. Developing Apps that use LLMs (Vertex AI SDK)
+2. Deploying Open Models (GKE / Cloud Run / Endpoints)
+3. Developing Agents (ADK)
+4. Securing AI Applications
+5. Deploying Agents (Agent Engine / Cloud Run / GKE)
+6. Evaluation (LLM + Agents + RAG)
+7. Agent Production Patterns (Agentic RAG, MCP, A2A)
+8. Data Foundations → Advanced RAG (AlloyDB / Cloud SQL vectors)
+9. Fine-Tuning
+
+**Partner / Skills badges (Build with Vertex AI family):**
+
+- Google GenAI Models
+- Deploy and Evaluate Model Garden Models
+- Generating / Editing Media
+- Building RAG Applications
+- Deploy Agents with ADK + MCP + A2A
+
+**Certification mapping — Professional Machine Learning Engineer (PMLE):** exam guide अब Vertex AI की जगह **Gemini Enterprise Agent Platform** लिखता है। Domains roughly: low-code AI, data+model collaboration, scale prototypes, serve models, automate pipelines, monitor AI।
+
+---
+
+## End-to-End FLOW (Idea → Production URL)
+
+```
+1. Studio में Prompt / Agent prototype
+        ↓
+2. Model Garden से Gemini / Claude / OSS चुनो
+        ↓
+3. Data → Embeddings → Vector Search / RAG Engine
+        ↓
+4. ADK Agent + Tools (MCP) + Memory Bank
+        ↓
+5. Eval + Guardrails (Model Armor + Agent Gateway)
+        ↓
+6. Deploy Agent Runtime / Endpoint
+        ↓
+7. Observability + Monitoring + Retrain Pipeline
+        ↓
+8. User URL / Gemini Enterprise app
+```
+
+---
+
+## क्या पहले पढ़ो (practical order)
+
+1. Vertex AI / Agent Platform overview  
+2. Studio + Gemini API (SDK)  
+3. Embeddings + Vector Search + RAG  
+4. Function Calling → ADK Agent  
+5. Deploy Endpoint / Agent Runtime  
+6. Model Armor + IAM + Gateway  
+7. Pipelines + Monitoring  
+8. PMLE domains अगर exam है  
+
+चाहो तो अगला message में सिर्फ **ADK + MCP + A2A** का detailed syllabus, या **PMLE domain-wise notes**, या **RAG Engine vs Vector Search vs Agent Search** comparison लिख दूँ।
+
+
+
+---
+---
+
+
+
+
+ये **GCP Agentic AI** की **Module 5** वाली Training Slide है — classroom / course deck का page। Title: **Agentic AI in GCP — Build Intelligent, Autonomous AI Agents**।
+
+नीचे लिखा है कि course में **MCP + A2A + RAG** के साथ **full-stack AI Agents** बनेंगे। मतलब ये overview slide है, implementation नहीं।
+
+ऊपर वाला robot loop agent का मतलब है:
+
+```
+AI Agent
+ ├── Reason   (सोचना / plan)
+ ├── Act      (tools चलाना)
+ ├── Learn    (memory / feedback)
+ └── Collaborate (दूसरे agents / humans)
+```
+
+---
+
+## Slide की Hierarchy (ऊपर से नीचे)
+
+```
+GCP Agentic Stack
+ ├── Core Components
+ │    ├── ADK
+ │    ├── Multi-Agent Systems
+ │    ├── Tools
+ │    ├── MCP
+ │    ├── A2A
+ │    └── GCP Datastores
+ ├── Advanced Capabilities
+ │    ├── Sessions
+ │    ├── Memory
+ │    ├── Callbacks
+ │    ├── Sub Agents
+ │    ├── RAG with Agents
+ │    └── Tokens & Cost
+ ├── UI Layer
+ │    ├── CopilotKit
+ │    └── AG-UI
+ ├── Lifecycle
+ │    Design → Build → Connect → Test → Deploy → Monitor
+ ├── Deploy
+ │    ├── Cloud Run
+ │    ├── GKE
+ │    └── Vertex AI Agent Engine
+ └── Production
+      ├── Security & IAM
+      ├── Observability
+      ├── Guardrails
+      ├── Scalability
+      ├── Reliability
+      └── Cost Control
+```
+
+---
+
+## Core Components — slide पर क्या लिखा है
+
+| Block | Simple मतलब |
+|--------|----------------|
+| **ADK** (Agent Development Kit) | Google का open-source, code-first framework। Agent logic Python/Go/Java/TS में लिखो, orchestrate करो, GCP पर deploy करो। |
+| **Multi-Agent Systems** | कई agents साथ काम करें — Supervisor / Planner, Sequential या Parallel। |
+| **Tools** | Built-in + custom — Google Search, Code, APIs, Functions। |
+| **MCP** (Model Context Protocol) | Agent को external systems से जोड़ने का standard — tools discovery + standardized context। |
+| **A2A** (Agent-to-Agent) | Agent-to-agent talk — context/tasks share, interoperable agents। |
+| **GCP Datastores** | Vertex AI Vector Search, Vertex AI Search, Cloud SQL / Spanner, BigQuery / Firestore। |
+
+**ADK** = agent का code framework। **MCP** = tools/data का plug। **A2A** = agents आपस में बात। तीन अलग layers हैं।
+
+---
+
+## Advanced Agent Capabilities
+
+- **Sessions** — एक conversation का state
+- **Memory** — short-term + long-term + vector memory
+- **Callbacks** — event / lifecycle पर extra actions
+- **Sub Agents** — बड़ा task छोटे specialist agents को देना
+- **RAG with Agents** — retrieval + reasoning साथ
+- **Tokens & Cost** — usage track, budget control
+
+दाहिने box: real-world full-stack agents + UI **CopilotKit** और **AG-UI** से।  
+**AG-UI** = Agent ↔ Frontend protocol (streaming chat, shared state)। **CopilotKit** उसी का React/web toolkit है।
+
+---
+
+## Agent Development Lifecycle (slide का flow)
+
+```
+1. Design     goals, roles, tools, workflows
+2. Build      ADK + tools + memory + logic
+3. Connect    MCP servers, APIs, data
+4. Test       evaluate, debug, improve
+5. Deploy     production on GCP
+6. Monitor    observe + continuously improve
+```
+
+---
+
+## Deploy Options (GCP)
+
+```
+Same ADK Agent
+ ├── Cloud Run          → fast, serverless, fully managed
+ ├── GKE                → containers at scale, ज़्यादा control
+ └── Vertex AI Agent Engine
+                        → managed agent hosting & scaling
+                           (अब Gemini Enterprise Agent Platform के अंदर)
+```
+
+ADK Docs भी यही तीन बताते हैं: **Agent Engine / Cloud Run / GKE**।
+
+---
+
+## Built for Production (नीचे 6 pillars)
+
+1. **Security & IAM** — least privilege, audit logs  
+2. **Observability** — logs, metrics, traces, alerts  
+3. **Guardrails** — safety, validation, content filtering  
+4. **Scalability** — autoscaling  
+5. **Reliability** — retries, timeouts, fault tolerance  
+6. **Cost Control** — token tracking, quotas, budgets  
+
+---
+
+## एक लाइन में याद रखो
+
+**ADK दिमाग लिखता है, Tools/MCP हाथ देते हैं, A2A टीम बनाता है, Datastores ज्ञान देते हैं, Agent Engine/Cloud Run/GKE शरीर चलाता है, AG-UI चेहरा दिखाता है।**
+
+चाहो तो अगला: इसी slide का **ADK + MCP + A2A mini architecture** (kaun kisse connect) diagram + simple code flow लिख दूँ।
+
+
+
+
+
+
+
+
+
+
