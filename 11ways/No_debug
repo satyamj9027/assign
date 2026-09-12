@@ -10,7 +10,7 @@ Test Cases
         ↓
 Visualization (अगर जरूरी हो)
         ↓
-11 Methods Code with No-Gaps in Code-Lines (Mandatory)
+11 Methods Code with Print() ( always with print with parentheses bracket) and No-Gaps in Code-Lines (Mandatory)
 
 **Prompt for Future Use {हिन्दी(देवनागरी) + Imp Words(English)}:**  
 हाय Grok, मुझे एक coding problem solve करना है। Problem: [PROBLEM_NAME]। कृपया इसे 11 अलग-अलग तरीकों से solve करो, जिसमें से top 2 methods बिना function के हों, फिर वही 2 methods function-based हों, और बाकी 6 methods भी function-based हों। एक method में list comprehension और एक में lambda function use करना mandatory है। 11वां method सबसे efficient हो, जो किसी DSA algorithm (जैसे divide and conquer, heap, dynamic programming, any type algorithm आदि) use करके हो, भले ही वह पहले दिखाया गया हो। निम्नलिखित नियमों का पालन करो:
@@ -260,213 +260,206 @@ Explanation: Input list में केवल 1 बार-बार है। D
 ✅ 1. Preferred Method – Using Set (Without Function)
 ```python
 arr = [1, 2, 2, 3, 4, 4, 5]
-arr = list(set(arr))  # Set hashing से duplicate elements automatically drop होते हैं, फिर List में convert
-print arr
+arr = list(set(arr))  # Set hashing से duplicate automatically drop
+print(arr)
 # Output: [1, 2, 3, 4, 5]
 ```
 **Step-by-step Explanation:**
-- Input List को Set में convert करते हैं।
-- Set automatically duplicate elements हटा देता है।
-- Set को वापस List में convert करते हैं।
-- Final unique List print करते हैं।
-**Time Complexity:** O(n) — Set creation और conversion एक pass में होते हैं।
-**Space Complexity:** O(n) — unique elements Set में store होते हैं।
+- **Input List** को **Set** में convert करते हैं।
+- **Set** automatically **duplicate elements** हटा देता है।
+- **Set** को वापस **List** बनाते हैं।
+- Unique **List** **print** करते हैं।
+**Time Complexity:** O(n) — **Set** creation एक **pass** में होती है।  
+**Space Complexity:** O(n) — unique elements **Set** में store होते हैं।
 
 ✅ 2. Preferred Method – Using Dictionary (Without Function)
 ```python
 arr = [1, 2, 2, 3, 4, 4, 5]
 dict1 = {}
 for num in arr:
-    dict1[num] = True  # Dictionary key हमेशा unique रहती है, same key overwrite हो जाती है
-arr = list(dict1.keys())  # Keys निकालकर unique List बनाते हैं
-print arr
+    dict1[num] = True  # Dictionary key हमेशा unique रहती है
+arr = list(dict1.keys())  # keys से unique List
+print(arr)
 # Output: [1, 2, 3, 4, 5]
 ```
 **Step-by-step Explanation:**
-- Empty Dictionary बनाते हैं।
-- Loop से हर element को key के रूप में डालते हैं।
-- Dictionary keys हमेशा unique रहती हैं।
-- Keys को List में convert करके print करते हैं।
-**Time Complexity:** O(n) — एक Loop और Dictionary operations average O(1) हैं।
-**Space Complexity:** O(n) — unique keys Dictionary में store होते हैं।
+- Empty **Dictionary** बनाते हैं।
+- हर **element** को **key** के रूप में डालते हैं।
+- **Dictionary keys** हमेशा unique रहती हैं।
+- **Keys** को **List** में convert करके **print** करते हैं।
+**Time Complexity:** O(n) — एक **Loop**, **Dictionary** operations average O(1)।  
+**Space Complexity:** O(n) — unique **keys** **Dictionary** में रहते हैं।
 
 ✅ 3. Preferred Method – Using Set (With Function)
 ```python
 def remDupSet(arr):
-    result = list(set(arr))  # Set uniqueness property से duplicates हटते हैं
+    result = list(set(arr))  # Set uniqueness से duplicates हटते हैं
     return result
 arr = [1, 2, 2, 3, 4, 4, 5]
-print remDupSet(arr)
+print(remDupSet(arr))
 # Output: [1, 2, 3, 4, 5]
 ```
 **Step-by-step Explanation:**
-- remDupSet function बनाते हैं।
-- Input List को Set में convert करते हैं।
-- Set को List बनाकर return करते हैं।
-- Function call करके unique List print करते हैं।
-**Time Complexity:** O(n) — Set creation O(n) है।
-**Space Complexity:** O(n) — Set unique elements रखता है।
+- **remDupSet** **function** बनाते हैं।
+- **Input List** को **Set** में convert करते हैं।
+- **Set** को **List** बनाकर return करते हैं।
+- **Function** call से unique **List** **print** करते हैं।
+**Time Complexity:** O(n) — **Set** creation O(n) है।  
+**Space Complexity:** O(n) — **Set** unique elements रखता है।
 
 ✅ 4. Preferred Method – Using Dictionary (With Function)
 ```python
 def remDupDict(arr):
     dict1 = {}
     for num in arr:
-        dict1[num] = True  # HashMap key insert, duplicate key फिर से नहीं बनती
-    result = list(dict1.keys())  # unique keys को List में बदलते हैं
+        dict1[num] = True  # HashMap key insert
+    result = list(dict1.keys())
     return result
 arr = [1, 2, 2, 3, 4, 4, 5]
-print remDupDict(arr)
+print(remDupDict(arr))
 # Output: [1, 2, 3, 4, 5]
 ```
 **Step-by-step Explanation:**
-- remDupDict function बनाते हैं।
-- Empty Dictionary बनाते हैं।
-- Loop से हर num को key बनाते हैं।
-- Unique keys की List return करते हैं।
-**Time Complexity:** O(n) — Loop और HashMap operations O(n) हैं।
-**Space Complexity:** O(n) — Dictionary unique keys store करता है।
+- **remDupDict** **function** बनाते हैं।
+- Empty **Dictionary** बनाते हैं।
+- **Loop** से हर **num** को **key** बनाते हैं।
+- Unique **keys** की **List** return करते हैं।
+**Time Complexity:** O(n) — **Loop** और **HashMap** operations O(n)।  
+**Space Complexity:** O(n) — **Dictionary** unique **keys** store करता है।
 
 ✅ 5. Brute Force Method – Check Each Element (With Function)
 ```python
 def bruteRemDup(arr):
     result = []
     for num in arr:
-        if num not in result:  # Linear search: element result List में पहले से है या नहीं
-            result.append(num)  # पहली बार आया तो unique माना और add किया
+        if num not in result:  # Linear search
+            result.append(num)
     return result
 arr = [1, 2, 2, 3, 4, 4, 5]
-print bruteRemDup(arr)
+print(bruteRemDup(arr))
 # Output: [1, 2, 3, 4, 5]
 ```
 **Step-by-step Explanation:**
-- bruteRemDup function बनाते हैं।
-- Empty result List बनाते हैं।
-- हर num को result में search करते हैं।
-- अगर नहीं मिला तो append करते हैं।
-- Final unique List return करते हैं।
-**Time Complexity:** O(n^2) — हर element के लिए List search O(n) लेता है।
-**Space Complexity:** O(n) — result List unique elements रखती है।
+- **bruteRemDup** **function** बनाते हैं।
+- Empty **result List** बनाते हैं।
+- हर **num** को **result** में search करते हैं।
+- नहीं मिला तो **append** करते हैं।
+**Time Complexity:** O(n^2) — हर **element** के लिए **List search** O(n)।  
+**Space Complexity:** O(n) — **result List** unique elements रखती है।
 
 ✅ 6. Other Method – Using Loop with Set Tracking (With Function)
 ```python
 def trackRemDup(arr):
-    set1 = set()  # seen elements track करने के लिए HashSet
+    set1 = set()  # HashSet tracking
     result = []
     for num in arr:
-        if num not in set1:  # O(1) lookup से पता चलता है कि element नया है
-            set1.add(num)  # Set में mark कर दिया ताकि अगली बार skip हो
-            result.append(num)  # पहली occurrence को result में रखते हैं, order बचा रहता है
+        if num not in set1:  # O(1) lookup
+            set1.add(num)
+            result.append(num)  # पहली occurrence, order बचा
     return result
 arr = [1, 2, 2, 3, 4, 4, 5]
-print trackRemDup(arr)
+print(trackRemDup(arr))
 # Output: [1, 2, 3, 4, 5]
 ```
 **Step-by-step Explanation:**
-- trackRemDup function बनाते हैं।
-- Empty Set और result List बनाते हैं।
-- हर num को Set में check करते हैं।
-- नई value को Set और result दोनों में add करते हैं।
-- Order-preserving unique List return करते हैं।
-**Time Complexity:** O(n) — Set lookup/add average O(1) है।
-**Space Complexity:** O(n) — Set और result दोनों unique values रखते हैं।
+- **trackRemDup** **function** बनाते हैं।
+- Empty **Set** और **result List** बनाते हैं।
+- नई value **Set** और **result** दोनों में जाती है।
+- **Order-preserving** unique **List** return होती है।
+**Time Complexity:** O(n) — **Set lookup/add** average O(1)।  
+**Space Complexity:** O(n) — **Set** और **result** दोनों unique values रखते हैं।
 
 ✅ 7. Other Method – Using Count Check (With Function)
 ```python
 def countRemDup(arr):
     result = []
     for num in arr:
-        if result.count(num) == 0:  # count 0 मतलब यह element result में पहली बार आ रहा है
+        if result.count(num) == 0:  # पहली बार आ रहा है
             result.append(num)
     return result
 arr = [1, 2, 2, 3, 4, 4, 5]
-print countRemDup(arr)
+print(countRemDup(arr))
 # Output: [1, 2, 3, 4, 5]
 ```
 **Step-by-step Explanation:**
-- countRemDup function बनाते हैं।
-- Empty result List बनाते हैं।
-- हर num का result.count check करते हैं।
-- Count 0 हो तो append करते हैं।
-- Unique List return करते हैं।
-**Time Complexity:** O(n^2) — count हर बार O(n) लेता है।
-**Space Complexity:** O(n) — result List O(n) space लेती है।
+- **countRemDup** **function** बनाते हैं।
+- हर **num** का **result.count** check करते हैं।
+- **Count** 0 हो तो **append** करते हैं।
+**Time Complexity:** O(n^2) — **count** हर बार O(n) लेता है।  
+**Space Complexity:** O(n) — **result List** O(n) space लेती है।
 
 ✅ 8. Other Method – Using Index Tracking (With Function)
 ```python
 def idxRemDup(arr):
     result = []
     for i in range(len(arr)):
-        if arr[i] not in arr[:i]:  # left slice में search: पहले वाले indexes पर यही value आई या नहीं
-            result.append(arr[i])  # पहली index वाली value ही unique मानी जाती है
+        if arr[i] not in arr[:i]:  # left slice search
+            result.append(arr[i])
     return result
 arr = [1, 2, 2, 3, 4, 4, 5]
-print idxRemDup(arr)
+print(idxRemDup(arr))
 # Output: [1, 2, 3, 4, 5]
 ```
 **Step-by-step Explanation:**
-- idxRemDup function बनाते हैं।
-- Index Loop चलाते हैं।
-- Current element को previous slice में search करते हैं।
-- नहीं मिला तो result में append करते हैं।
-- Unique List return करते हैं।
-**Time Complexity:** O(n^2) — हर index पर slice search O(n) है।
-**Space Complexity:** O(n) — result List unique elements रखती है।
+- **idxRemDup** **function** बनाते हैं।
+- **Index Loop** चलाते हैं।
+- Current **element** previous **slice** में search करते हैं।
+- नहीं मिला तो **result** में **append** करते हैं।
+**Time Complexity:** O(n^2) — हर **index** पर **slice search** O(n)।  
+**Space Complexity:** O(n) — **result List** unique elements रखती है।
 
 ✅ 9. Other Method – Using List Comprehension (With Function)
 ```python
 def compRemDup(arr):
-    result = [num for i, num in enumerate(arr) if num not in arr[:i]]  # index i से पहले value न हो तभी include
+    result = [num for i, num in enumerate(arr) if num not in arr[:i]]
     return result
 arr = [1, 2, 2, 3, 4, 4, 5]
-print compRemDup(arr)
+print(compRemDup(arr))
 # Output: [1, 2, 3, 4, 5]
 ```
 **Step-by-step Explanation:**
-- compRemDup function बनाते हैं।
-- List comprehension में enumerate से index और value लेते हैं।
-- अगर value previous slice में नहीं है तो include करते हैं।
-- बनी हुई unique List return करते हैं।
-**Time Complexity:** O(n^2) — हर check में slice search O(n) है।
-**Space Complexity:** O(n) — comprehension नई List बनाती है।
+- **compRemDup** **function** बनाते हैं।
+- **List comprehension** में **enumerate** से **index** और value लेते हैं।
+- Previous **slice** में value न हो तभी include करते हैं।
+**Time Complexity:** O(n^2) — हर check में **slice search** O(n)।  
+**Space Complexity:** O(n) — comprehension नई **List** बनाती है।
 
 ✅ 10. Other Method – Using Lambda (With Function)
 ```python
 def lambRemDup(arr):
-    result = list((lambda x: set(x))(arr))  # lambda List लेता है, Set बनाकर uniqueness apply करता है
+    result = list((lambda x: set(x))(arr))  # lambda से Set uniqueness
     return result
 arr = [1, 2, 2, 3, 4, 4, 5]
-print lambRemDup(arr)
+print(lambRemDup(arr))
 # Output: [1, 2, 3, 4, 5]
 ```
 **Step-by-step Explanation:**
-- lambRemDup function बनाते हैं।
-- Lambda List को Set में convert करता है।
-- Set को List में बदलकर return करते हैं।
-- Duplicates Set की वजह से हट जाते हैं।
-**Time Complexity:** O(n) — Set conversion O(n) है।
-**Space Complexity:** O(n) — Set unique elements store करता है।
+- **lambRemDup** **function** बनाते हैं।
+- **Lambda** **List** को **Set** में convert करता है।
+- **Set** को **List** में बदलकर return करते हैं।
+**Time Complexity:** O(n) — **Set** conversion O(n)।  
+**Space Complexity:** O(n) — **Set** unique elements store करता है।
 
 ✅ 11. Additional Most Efficient Method – HashSet Algorithm (With Function)
 ```python
 def hashRemDup(arr):
-    set1 = set()  # HashSet / Hash Table बनाते हैं
+    set1 = set()  # HashSet / Hash Table
     for num in arr:
-        set1.add(num)  # hash(num) से bucket में insert, duplicate hash collision पर ignore
-    result = list(set1)  # unique hashed values को List में निकालते हैं
+        set1.add(num)  # hash insert, duplicate ignore
+    result = list(set1)
     return result
 arr = [1, 2, 2, 3, 4, 4, 5]
-print hashRemDup(arr)
+print(hashRemDup(arr))
 # Output: [1, 2, 3, 4, 5]
 ```
 **Step-by-step Explanation:**
-- hashRemDup function बनाते हैं।
-- Empty HashSet बनाते हैं।
-- हर num को HashSet में add करते हैं।
-- HashSet duplicate accept नहीं करता।
-- Set को List में convert करके return करते हैं।
-**Time Complexity:** O(n) — हर insert average O(1), कुल एक pass।
-**Space Complexity:** O(n) — HashSet unique elements रखता है।
+- **hashRemDup** **function** बनाते हैं।
+- Empty **HashSet** बनाते हैं।
+- हर **num** को **HashSet** में **add** करते हैं।
+- **HashSet** **duplicate** accept नहीं करता।
+- **Set** को **List** में convert करके return करते हैं।
+**Time Complexity:** O(n) — हर **insert** average O(1), कुल एक **pass**।  
+**Space Complexity:** O(n) — **HashSet** unique elements रखता है।
 
--------------------------------------------------------------
+--------------------------------------------------
 
