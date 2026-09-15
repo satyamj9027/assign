@@ -1,0 +1,2 @@
+Q1: batao agar ek mcp ya tool me koi file ya sppose kro koi transaction h backend me complete ho gya but user ko failed and agent retry lgya h toh woh fir se multiple hit krke multiple transaction complete kr rha hai user ko pta hi nhi chl rha hai toh yha kya failures h kaise pta kre and kya kaise resolve kre
+kya hm aise scenarios k liye webhooks, pooling or any other things use kr skte h
